@@ -14,10 +14,9 @@
       "title",
       "hero",
       "cards",
+      "highlight-cards",
       "columns",
-      "fragment",
-      "layout-container-item",
-      "layout-container"
+      "fragment"
     ]
   },
   {
@@ -40,11 +39,11 @@
       "button",
       "title"
     ]
-  },  
+  },
   {
-    "id": "layout-container",
+    "id": "highlight-cards",
     "components": [
-      "layout-container-item"
+      "highlight-card"
     ]
   }
 ]

@@ -216,44 +216,35 @@
     ]
   },
   {
-    "id": "layout-container-item",
+    "id": "highlight-card",
     "fields": [
       {
         "component": "reference",
         "valueType": "string",
         "name": "image",
-        "label": "Background Image", 
+        "label": "Image",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "tag",
-        "label": "Tag"
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "title",
-        "label": "Title"
+        "name": "category",
+        "label": "Category",
+        "value": ""
       },
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "description",
-        "label": "Description"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "ctaText",
-        "label": "CTA Text"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "ctaUrl",
-        "label": "CTA URL"
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
       }
     ]
   }
