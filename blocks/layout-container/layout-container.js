@@ -1,85 +1,24 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function getCellText(cell) {
-  return cell?.textContent?.trim() || '';
-}
- 
-function getImageCellPicture(cell) {
-  return cell?.querySelector('picture');
-}
-
 export default function decorate(block) {
-  const rows = [...block.children];
+  /* change to ul, li */
   const ul = document.createElement('ul');
-
-  rows.forEach((row) => {
+  [...block.children].forEach((row) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
-
-    const [imageCell, tagCell, titleCell, descriptionCell, ctaTextCell, ctaUrlCell] = [...row.children];
-
-    const imageWrapper = document.createElement('div');
-    imageWrapper.className = 'layout-container-card-image';
-    const picture = getImageCellPicture(imageCell);
-
-    if (picture) {
-      const img = picture.querySelector('img');
-      if (img) {
-        const optimizedPic = createOptimizedPicture(img.src, img.alt || '', false, [{ width: '1200' }]);
-        moveInstrumentation(img, optimizedPic.querySelector('img'));
-        imageWrapper.append(optimizedPic);
-      }
-    }
-
-    const overlay = document.createElement('div');
-    overlay.className = 'layout-container-card-overlay';
-
-    const tag = getCellText(tagCell);
-    if (tag) {
-      const tagEl = document.createElement('p');
-      tagEl.className = 'layout-container-card-tag';
-      tagEl.textContent = tag;
-      moveInstrumentation(tagCell, tagEl);
-      overlay.append(tagEl);
-    }
-
-    const title = getCellText(titleCell);
-    if (title) {
-      const titleEl = document.createElement('h3');
-      titleEl.className = 'layout-container-card-title';
-      titleEl.textContent = title;
-      moveInstrumentation(titleCell, titleEl);
-      overlay.append(titleEl);
-    }
-
-    const description = getCellText(descriptionCell);
-    if (description) {
-      const descriptionEl = document.createElement('p');
-      descriptionEl.className = 'layout-container-card-description';
-      descriptionEl.textContent = description;
-      moveInstrumentation(descriptionCell, descriptionEl);
-      overlay.append(descriptionEl);
-    }
-
-    const ctaText = getCellText(ctaTextCell);
-    const ctaUrl = getCellText(ctaUrlCell);
-    if (ctaText && ctaUrl) {
-      const ctaEl = document.createElement('a');
-      ctaEl.className = 'layout-container-card-cta';
-      ctaEl.href = ctaUrl;
-      ctaEl.textContent = ctaText;
-      ctaEl.title = ctaText;
-      moveInstrumentation(ctaTextCell, ctaEl);
-      moveInstrumentation(ctaUrlCell, ctaEl);
-      overlay.append(ctaEl);
-    }
-
-    li.append(imageWrapper, overlay);
+    while (row.firstElementChild) li.append(row.firstElementChild);
+    [...li.children].forEach((div) => {
+      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
+      else div.className = 'cards-card-body';
+    });
     ul.append(li);
   });
-
+  ul.querySelectorAll('picture > img').forEach((img) => {
+    const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+    moveInstrumentation(img, optimizedPic.querySelector('img'));
+    img.closest('picture').replaceWith(optimizedPic);
+  });
   block.textContent = '';
   block.append(ul);
-
 }
