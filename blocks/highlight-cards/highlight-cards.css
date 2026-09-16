@@ -4,16 +4,16 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  grid-gap: 24px;
+  grid-gap: 25px;
 }
 
 .highlight-cards > ul > li {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 420px;
+  min-height: 380px;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: var(--dark-color);
   isolation: isolate;
 }
@@ -36,15 +36,34 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgb(0 0 0 / 10%) 0%, rgb(0 0 0 / 70%) 100%);
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 55%) 0%,
+    rgb(0 0 0 / 70%) 35%,
+    rgb(0 0 0 / 35%) 60%,
+    rgb(0 0 0 / 0%) 85%
+  );
 }
 
 .highlight-cards .highlight-cards-card-category {
   flex: 0 0 auto;
-  margin: 20px 24px 0;
+  margin: 20px 60px 0 20px;
   min-height: 1.2em;
   color: var(--background-color);
-  font-size: var(--body-font-size-xs);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.highlight-cards .highlight-cards-card-duration {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  min-height: 1.2em;
+  color: var(--background-color);
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -52,12 +71,9 @@
 }
 
 .highlight-cards .highlight-cards-card-body {
-  display: flex;
   flex: 1 1 auto;
-  flex-direction: column;
-  justify-content: flex-end;
   min-height: 2.4em;
-  margin: 0 24px 24px;
+  margin: 12px 20px 24px;
   color: var(--background-color);
 }
 
@@ -67,16 +83,17 @@
 .highlight-cards .highlight-cards-card-body h4,
 .highlight-cards .highlight-cards-card-body h5,
 .highlight-cards .highlight-cards-card-body h6 {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   color: var(--background-color);
-  font-size: var(--heading-font-size-s);
+  font-size: 22px;
+  font-weight: 700;
   line-height: 1.25;
 }
 
 .highlight-cards .highlight-cards-card-body p {
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   color: rgb(255 255 255 / 85%);
-  font-size: var(--body-font-size-xs);
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -85,7 +102,7 @@
 }
 
 .highlight-cards .highlight-cards-card-body .button-container {
-  margin: 0;
+  margin: 4px 0 0;
 }
 
 .highlight-cards .highlight-cards-card-body a.button {
@@ -93,13 +110,14 @@
   align-items: center;
   gap: 8px;
   margin: 0;
-  border: 1px solid rgb(255 255 255 / 60%);
-  border-radius: 2px;
-  padding: 0.6em 1.1em;
+  border: 1px solid rgb(255 255 255 / 55%);
+  border-radius: 3px;
+  padding: 0.55em 1em;
   background-color: transparent;
   color: var(--background-color);
-  font-size: var(--body-font-size-xs);
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: normal;
 }
 
 .highlight-cards .highlight-cards-card-body a.button::after {
