@@ -49,6 +49,7 @@
         "title",
         "hero",
         "cards",
+        "highlight-cards",
         "columns",
         "fragment"
       ]
