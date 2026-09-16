@@ -1,0 +1,86 @@
+{
+  "definitions": [
+    {
+      "title": "Layout Container",
+      "id": "layout-container",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Layout Container",
+              "filter": "layout-container"
+            }
+          }
+        }
+      } 
+    },
+    {
+      "title": "Layout Container Item",
+      "id": "layout-container-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Layout Container Item",
+              "model": "layout-container-item"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "layout-container-item",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Background Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "tag",
+          "label": "Tag"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "label": "Title"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "description",
+          "label": "Description"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ctaText",
+          "label": "CTA Text"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ctaUrl",
+          "label": "CTA URL"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "layout-container",
+      "components": [
+        "layout-container-item"
+      ]
+    }
+  ]
+}
