@@ -40,7 +40,9 @@
 }
 
 .highlight-cards .highlight-cards-card-category {
+  flex: 0 0 auto;
   margin: 20px 24px 0;
+  min-height: 1.2em;
   color: var(--background-color);
   font-size: var(--body-font-size-xs);
   font-weight: 600;
@@ -51,8 +53,11 @@
 
 .highlight-cards .highlight-cards-card-body {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
-  margin: auto 24px 24px;
+  justify-content: flex-end;
+  min-height: 2.4em;
+  margin: 0 24px 24px;
   color: var(--background-color);
 }
 
