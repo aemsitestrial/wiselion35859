@@ -75,7 +75,8 @@
     {
       "id": "highlight-cards",
       "components": [
-        "highlight-card"
+        "highlight-card",
+        "button"
       ]
     }
   ]
