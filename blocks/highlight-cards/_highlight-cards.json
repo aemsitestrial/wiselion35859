@@ -52,8 +52,8 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "duration",
-          "label": "Duration (optional, e.g. 14 MIN)",
+          "name": "heading",
+          "label": "Heading",
           "value": ""
         },
         {
@@ -62,6 +62,11 @@
           "value": "",
           "label": "Text",
           "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "cta",
+          "label": "CTA Link"
         }
       ]
     }

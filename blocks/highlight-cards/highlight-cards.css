@@ -46,15 +46,19 @@
 }
 
 .highlight-cards .highlight-cards-card-category {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 140%; /* ~16.8px */
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-align: left;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
   flex: 0 0 auto;
   margin: 20px 60px 0 20px;
   min-height: 1.2em;
-  color: var(--background-color);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.85;
+	opacity: 0.85;
 }
 
 .highlight-cards .highlight-cards-card-duration {
@@ -68,6 +72,18 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.85;
+}
+
+.highlight-cards .highlight-cards-card-heading {
+  flex: 0 0 auto;
+  margin: 8px 20px 0;
+  min-height: 1.2em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: 0;
+  color: #f3f3f3;
 }
 
 .highlight-cards .highlight-cards-card-body {
@@ -105,7 +121,12 @@
   margin: 4px 0 0;
 }
 
-.highlight-cards .highlight-cards-card-body a.button {
+.highlight-cards .highlight-cards-card-cta {
+  margin: 4px 20px 20px;
+}
+
+.highlight-cards .highlight-cards-card-body a.button,
+.highlight-cards .highlight-cards-card-cta a.button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -120,12 +141,15 @@
   white-space: normal;
 }
 
-.highlight-cards .highlight-cards-card-body a.button::after {
+.highlight-cards .highlight-cards-card-body a.button::after,
+.highlight-cards .highlight-cards-card-cta a.button::after {
   content: '\2192';
 }
 
 .highlight-cards .highlight-cards-card-body a.button:hover,
-.highlight-cards .highlight-cards-card-body a.button:focus {
+.highlight-cards .highlight-cards-card-body a.button:focus,
+.highlight-cards .highlight-cards-card-cta a.button:hover,
+.highlight-cards .highlight-cards-card-cta a.button:focus {
   border-color: var(--background-color);
   background-color: var(--background-color);
   color: var(--text-color);

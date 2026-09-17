@@ -4,8 +4,9 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 const FIELD_CLASSES = [
   'highlight-cards-card-image',
   'highlight-cards-card-category',
-  'highlight-cards-card-duration',
+  'highlight-cards-card-heading',
   'highlight-cards-card-body',
+  'highlight-cards-card-cta',
 ];
 
 export default function decorate(block) {
