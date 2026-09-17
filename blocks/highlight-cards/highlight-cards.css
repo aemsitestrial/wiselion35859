@@ -61,18 +61,6 @@
   opacity: 0.85;
 }
 
-.highlight-cards .highlight-cards-card-duration {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  min-height: 1.2em;
-  color: var(--background-color);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.85;
-}
 
 .highlight-cards .highlight-cards-card-heading {
   flex: 0 0 auto;
@@ -93,18 +81,6 @@
   color: var(--background-color);
 }
 
-.highlight-cards .highlight-cards-card-body h1,
-.highlight-cards .highlight-cards-card-body h2,
-.highlight-cards .highlight-cards-card-body h3,
-.highlight-cards .highlight-cards-card-body h4,
-.highlight-cards .highlight-cards-card-body h5,
-.highlight-cards .highlight-cards-card-body h6 {
-  margin: 0 0 10px;
-  color: var(--background-color);
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.25;
-}
 
 .highlight-cards .highlight-cards-card-body p {
   margin: 0 0 14px;
