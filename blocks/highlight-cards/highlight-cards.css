@@ -11,7 +11,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 380px;
+  min-height: 455px;
   overflow: hidden;
   border-radius: 6px;
   background-color: var(--dark-color);
@@ -64,11 +64,11 @@
 
 .highlight-cards .highlight-cards-card-heading {
   flex: 0 0 auto;
-  margin: 8px 20px 0;
+  margin: -5% 5%;
   min-height: 1.2em;
   font-family: Inter, sans-serif;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 2.2rem;
   line-height: 120%;
   letter-spacing: 0;
   color: #f3f3f3;
