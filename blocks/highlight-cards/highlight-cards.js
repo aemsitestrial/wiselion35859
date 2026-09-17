@@ -21,6 +21,18 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
+  // the "image" reference field is authored as a plain link to the asset
+  // (e.g. <a href="...avif">title</a>), not as an embedded <picture>, so
+  // convert it into a real image before the optimization pass below
+  ul.querySelectorAll('.highlight-cards-card-image a[href]').forEach((link) => {
+    const img = document.createElement('img');
+    img.src = link.href;
+    img.alt = link.title || link.textContent.trim() || '';
+    moveInstrumentation(link, img);
+    const picture = document.createElement('picture');
+    picture.append(img);
+    (link.closest('.button-container') || link).replaceWith(picture);
+  });
   ul.querySelectorAll('picture > img').forEach((img) => {
     const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
     moveInstrumentation(img, optimizedPic.querySelector('img'));
