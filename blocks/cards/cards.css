@@ -7,9 +7,7 @@
   grid-gap: 24px;
 }
 
-.cards > ul > li {
-  background-color: background: var(--Background-Default-Default, #0C0C0D);
-}
+.cards > ul > li {  background-color: var(--Background-Default-Default, #0C0C0D);}
 
 .cards .cards-card-body {
   margin: 16px;
