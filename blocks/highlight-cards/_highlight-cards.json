@@ -86,21 +86,6 @@
           "value": true
         },
         {
-          "component": "text",
-          "valueType": "string",
-          "name": "heading",
-          "label": "Heading",
-          "value": ""
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "headingOverlay",
-          "label": "Overlay heading on image",
-          "description": "When off, the heading is shown below the image",
-          "value": true
-        },
-        {
           "component": "richtext",
           "name": "text",
           "value": "",
@@ -113,19 +98,6 @@
           "name": "textOverlay",
           "label": "Overlay text on image",
           "description": "When off, the text is shown below the image",
-          "value": true
-        },
-        {
-          "component": "aem-content",
-          "name": "cta",
-          "label": "CTA Link"
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "ctaOverlay",
-          "label": "Overlay CTA on image",
-          "description": "When off, the CTA is shown below the image",
           "value": true
         }
       ]
