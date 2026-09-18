@@ -86,6 +86,21 @@
           "value": true
         },
         {
+          "component": "text",
+          "valueType": "string",
+          "name": "heading",
+          "label": "Heading",
+          "value": ""
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "headingOverlay",
+          "label": "Overlay heading on image",
+          "description": "When off, the heading is shown below the image",
+          "value": true
+        },
+        {
           "component": "richtext",
           "name": "text",
           "value": "",
