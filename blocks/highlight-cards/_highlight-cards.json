@@ -9,6 +9,7 @@
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Highlight Cards",
+              "model": "highlight-cards",
               "filter": "highlight-cards"
             }
           }
@@ -33,6 +34,33 @@
   ],
   "models": [
     {
+      "id": "highlight-cards",
+      "fields": [
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Columns",
+          "description": "Number of cards shown per row on desktop",
+          "value": "cols-3",
+          "options": [
+            {
+              "name": "2 Columns",
+              "value": "cols-2"
+            },
+            {
+              "name": "3 Columns",
+              "value": "cols-3"
+            },
+            {
+              "name": "4 Columns",
+              "value": "cols-4"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "highlight-card",
       "fields": [
         {
@@ -50,11 +78,27 @@
           "value": ""
         },
         {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "categoryOverlay",
+          "label": "Overlay category on image",
+          "description": "When off, the category is shown below the image",
+          "value": true
+        },
+        {
           "component": "text",
           "valueType": "string",
           "name": "heading",
           "label": "Heading",
           "value": ""
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "headingOverlay",
+          "label": "Overlay heading on image",
+          "description": "When off, the heading is shown below the image",
+          "value": true
         },
         {
           "component": "richtext",
@@ -64,9 +108,25 @@
           "valueType": "string"
         },
         {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "textOverlay",
+          "label": "Overlay text on image",
+          "description": "When off, the text is shown below the image",
+          "value": true
+        },
+        {
           "component": "aem-content",
           "name": "cta",
           "label": "CTA Link"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "ctaOverlay",
+          "label": "Overlay CTA on image",
+          "description": "When off, the CTA is shown below the image",
+          "value": true
         }
       ]
     }
