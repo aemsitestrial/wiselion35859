@@ -1,32 +1,129 @@
 {
-  "definitions":[{
-    "title":"Highlight Cards",
-    "id":"highlight-cards"
-  }],
-  "models":[
+  "definitions": [
     {
-      "id":"highlight-cards",
-      "fields":[{
-        "component":"select",
-        "name":"classes",
-        "label":"Columns",
-        "value":"cols-3",
-        "options":[
-          {"name":"2 Columns","value":"cols-2"},
-          {"name":"3 Columns","value":"cols-3"},
-          {"name":"4 Columns","value":"cols-4"}
-        ]
-      }]
+      "title": "Highlight Cards",
+      "id": "highlight-cards",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Highlight Cards",
+              "model": "highlight-cards",
+              "filter": "highlight-cards"
+            }
+          }
+        }
+      }
     },
     {
-      "id":"highlight-card",
-      "fields":[
-        {"component":"reference","name":"image","label":"Image"},
-        {"component":"boolean","name":"overlay","label":"Overlay Content On Image","value":true},
-        {"component":"text","name":"category","label":"Category"},
-        {"component":"text","name":"heading","label":"Heading"},
-        {"component":"richtext","name":"description","label":"Description"},
-        {"component":"reference","name":"cta","label":"CTA"}
+      "title": "Highlight Card",
+      "id": "highlight-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Highlight Card",
+              "model": "highlight-card"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "highlight-cards",
+      "fields": [
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Columns",
+          "description": "Number of cards shown per row on desktop",
+          "value": "cols-3",
+          "options": [
+            {
+              "name": "2 Columns",
+              "value": "cols-2"
+            },
+            {
+              "name": "3 Columns",
+              "value": "cols-3"
+            },
+            {
+              "name": "4 Columns",
+              "value": "cols-4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "highlight-card",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "category",
+          "label": "Category",
+          "value": ""
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "categoryOverlay",
+          "label": "Overlay category on image",
+          "description": "When off, the category is shown below the image",
+          "value": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "heading",
+          "label": "Heading",
+          "value": ""
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "headingOverlay",
+          "label": "Overlay heading on image",
+          "description": "When off, the heading is shown below the image",
+          "value": true
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "textOverlay",
+          "label": "Overlay text on image",
+          "description": "When off, the text is shown below the image",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "highlight-cards",
+      "components": [
+        "highlight-card",
+        "button"
       ]
     }
   ]
