@@ -1,37 +1,44 @@
+import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
+const FIELD_CLASSES = [
+  'highlight-cards-card-image',
+  'highlight-cards-card-category',
+  'highlight-cards-card-heading',
+  'highlight-cards-card-body',
+  'highlight-cards-card-cta',
+];
+
 export default function decorate(block) {
-  const cards = [...block.children];
   const ul = document.createElement('ul');
-
-  cards.forEach((row) => {
+  [...block.children].forEach((row) => {
     const li = document.createElement('li');
-    const cells = [...row.children];
-
-    const image = cells[0];
-    const overlay = cells[1]?.textContent?.trim()?.toLowerCase() !== 'false';
-    const category = cells[2];
-    const text = cells[3];
-    const cta = cells[4];
-
-    li.classList.add(overlay ? 'overlay' : 'split');
-
-    if (image) image.classList.add('highlight-card-image');
-    if (category) category.classList.add('highlight-card-category');
-    if (text) text.classList.add('highlight-card-text');
-    if (cta) cta.classList.add('highlight-card-cta');
-
-    if (overlay) {
-      const content = document.createElement('div');
-      content.className = 'highlight-card-overlay';
-      [category, text, cta].forEach((el) => el && content.append(el));
-      if (image) li.append(image);
-      li.append(content);
-    } else {
-      [image, category, text, cta].forEach((el) => el && li.append(el));
-    }
-
+    moveInstrumentation(row, li);
+    while (row.firstElementChild) li.append(row.firstElementChild);
+    // classify each field div by its fixed position (image, category, text),
+    // not by its content, so empty/unset fields stay visible and editable
+    [...li.children].forEach((div, i) => {
+      div.className = FIELD_CLASSES[i] || 'highlight-cards-card-body';
+    });
     ul.append(li);
   });
-
+  // the "image" reference field is authored as a plain link to the asset
+  // (e.g. <a href="...avif">title</a>), not as an embedded <picture>, so
+  // convert it into a real image before the optimization pass below
+  ul.querySelectorAll('.highlight-cards-card-image a[href]').forEach((link) => {
+    const img = document.createElement('img');
+    img.src = link.href;
+    img.alt = link.title || link.textContent.trim() || '';
+    moveInstrumentation(link, img);
+    const picture = document.createElement('picture');
+    picture.append(img);
+    (link.closest('.button-container') || link).replaceWith(picture);
+  });
+  ul.querySelectorAll('picture > img').forEach((img) => {
+    const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+    moveInstrumentation(img, optimizedPic.querySelector('img'));
+    img.closest('picture').replaceWith(optimizedPic);
+  });
   block.textContent = '';
   block.append(ul);
 }

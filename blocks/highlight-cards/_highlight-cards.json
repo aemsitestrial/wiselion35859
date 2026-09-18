@@ -32,6 +32,7 @@
       }
     }
   ],
+
   "models": [
     {
       "id": "highlight-cards",
@@ -41,7 +42,7 @@
           "valueType": "string",
           "name": "classes",
           "label": "Columns",
-          "description": "Number of cards shown per row on desktop",
+          "description": "Number of cards shown per row",
           "value": "cols-3",
           "options": [
             {
@@ -60,6 +61,7 @@
         }
       ]
     },
+
     {
       "id": "highlight-card",
       "fields": [
@@ -70,60 +72,44 @@
           "label": "Image",
           "multi": false
         },
+
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "overlay",
+          "label": "Use Image as Background",
+          "description": "When enabled, text overlays the image",
+          "value": false
+        },
+
         {
           "component": "text",
           "valueType": "string",
           "name": "category",
-          "label": "Category",
-          "value": ""
+          "label": "Category"
         },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "categoryOverlay",
-          "label": "Overlay category on image",
-          "description": "When off, the category is shown below the image",
-          "value": true
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "heading",
-          "label": "Heading",
-          "value": ""
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "headingOverlay",
-          "label": "Overlay heading on image",
-          "description": "When off, the heading is shown below the image",
-          "value": true
-        },
+
         {
           "component": "richtext",
+          "valueType": "string",
           "name": "text",
-          "value": "",
-          "label": "Text",
-          "valueType": "string"
+          "label": "Rich Text"
         },
+
         {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "textOverlay",
-          "label": "Overlay text on image",
-          "description": "When off, the text is shown below the image",
-          "value": true
+          "component": "aem-content",
+          "name": "cta",
+          "label": "CTA Link"
         }
       ]
     }
   ],
+
   "filters": [
     {
       "id": "highlight-cards",
       "components": [
-        "highlight-card",
-        "button"
+        "highlight-card"
       ]
     }
   ]
