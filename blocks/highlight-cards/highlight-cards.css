@@ -1,14 +1,86 @@
- .highlight-cards > ul{display:grid;gap:24px;list-style:none;padding:0;margin:0;}
-.highlight-cards.cols-2 > ul{grid-template-columns:repeat(2,1fr);}
-.highlight-cards.cols-3 > ul{grid-template-columns:repeat(3,1fr);}
-.highlight-cards.cols-4 > ul{grid-template-columns:repeat(4,1fr);}
-.highlight-cards li{position:relative;overflow:hidden;border-radius:8px;background:#f4f4f4;}
-.highlight-cards .highlight-cards-card-media{position:relative;}
-.highlight-cards .overlay .highlight-cards-card-image{position:absolute;inset:0;}
-.highlight-cards .overlay .highlight-cards-card-image img{width:100%;height:100%;object-fit:cover;}
-.highlight-cards .split .highlight-cards-card-image img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;}
-.highlight-cards-card-media-overlay::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgb(0 0 0 / 75%),transparent);z-index:1;}
-.highlight-cards-card-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;color:#fff;}
-.highlight-cards-card-content{padding:24px;}
-.highlight-cards-card-heading{font-size:32px;line-height:1.2;}
-@media (max-width:900px){.highlight-cards > ul{grid-template-columns:1fr;}}
+.highlight-cards > ul {
+  display: grid;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.highlight-cards.cols-2 > ul {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.highlight-cards.cols-3 > ul {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.highlight-cards.cols-4 > ul {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.highlight-cards li {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f4f4f4;
+}
+
+.highlight-cards .highlight-cards-card-media {
+  position: relative;
+}
+
+.highlight-cards .overlay .highlight-cards-card-image {
+  position: absolute;
+  inset: 0;
+}
+
+.highlight-cards .overlay .highlight-cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.highlight-cards .split .highlight-cards-card-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.highlight-cards .highlight-cards-card-media-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 75%),
+    transparent
+  );
+  z-index: 1;
+}
+
+.highlight-cards .highlight-cards-card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  color: #fff;
+}
+
+.highlight-cards .highlight-cards-card-content {
+  padding: 24px;
+}
+
+.highlight-cards .highlight-cards-card-heading {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+@media (width < 900px) {
+  .highlight-cards > ul {
+    grid-template-columns: 1fr;
+  }
+}
