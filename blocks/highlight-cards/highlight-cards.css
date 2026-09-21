@@ -129,8 +129,38 @@
   color: var(--text-color);
 }
 
+.highlight-cards {
+  display: grid;
+  gap: 50px;
+}
+
+.highlight-cards.columns-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.highlight-cards.columns-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Replace with exact design dimensions if your 2- and 3-column cards differ. */
+.highlight-cards.columns-2 .highlight-card-media {
+  aspect-ratio: 4 / 3;
+}
+
+.highlight-cards.columns-3 .highlight-card-media {
+  aspect-ratio: 16 / 10;
+}
+
 @media (width >= 900px) {
   .highlight-cards > ul {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (width <= 767px) {
+  .highlight-cards.columns-2,
+  .highlight-cards.columns-3 {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
