@@ -15,7 +15,6 @@
       "hero",
       "cards",
       "highlight-cards",
-      "highlighted-cards",
       "columns",
       "fragment"
     ]
@@ -44,13 +43,10 @@
   {
     "id": "highlight-cards",
     "components": [
-      "highlight-card"
-    ]
-  },
-  {
-    "id": "highlighted-cards",
-    "components": [
-      "highlighted-card"
+      "highlight-card",
+      "image",
+      "text",
+      "title"
     ]
   }
 ]
