@@ -11,12 +11,16 @@ module.exports = {
   parser: '@babel/eslint-parser',
   parserOptions: {
     allowImportExportEverywhere: true,
+    sourceType: 'module',
+    requireConfigFile: false,
   },
   rules: {
+    'import/extensions': ['error', { js: 'always' }], // require js file extensions in imports
+    'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
+    'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'xwalk/max-cells': ['error', {
-      'highlight-card': 9,
-      'highlighted-card': 9,
       '*': 4,
+      'highlighted-card': 7,
     }],
   },
 };
