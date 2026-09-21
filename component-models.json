@@ -216,6 +216,33 @@
     ]
   },
   {
+    "id": "highlight-cards",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Columns",
+        "description": "Number of cards shown per row",
+        "value": "cols-3",
+        "options": [
+          {
+            "name": "2 Columns",
+            "value": "cols-2"
+          },
+          {
+            "name": "3 Columns",
+            "value": "cols-3"
+          },
+          {
+            "name": "4 Columns",
+            "value": "cols-4"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "highlight-card",
     "fields": [
       {
@@ -228,23 +255,127 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "imageAlt",
-        "label": "Alt",
-        "value": ""
-      },
-      {
-        "component": "text",
-        "valueType": "string",
         "name": "category",
-        "label": "Category",
-        "value": ""
+        "label": "Category"
       },
       {
         "component": "richtext",
+        "valueType": "string",
         "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
+        "label": "Rich Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "cta",
+        "label": "CTA Link"
+      }
+    ]
+  },
+  {
+    "id": "highlighted-card",
+    "fields": [
+      {
+        "component": "container",
+        "name": "imageSettings",
+        "label": "Image",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "reference",
+            "name": "image",
+            "label": "Image Asset",
+            "description": "Select the card image.",
+            "value": "",
+            "valueType": "string",
+            "required": true,
+            "multi": false
+          },
+          {
+            "component": "text",
+            "name": "alt",
+            "label": "Alt Text",
+            "description": "Alternative text for the image. Leave empty only when the image is decorative.",
+            "value": "",
+            "valueType": "string"
+          },
+          {
+            "component": "boolean",
+            "name": "useAsBackground",
+            "label": "Use image as background",
+            "description": "When enabled, category, rich text, and CTA are rendered over the image.",
+            "value": false,
+            "valueType": "boolean"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "contentSettings",
+        "label": "Content",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "name": "category",
+            "label": "Category",
+            "value": "",
+            "valueType": "string"
+          },
+          {
+            "component": "richtext",
+            "name": "content",
+            "label": "Rich Text",
+            "value": "<p>Add card content.</p>",
+            "valueType": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "ctaSettings",
+        "label": "CTA",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "name": "ctaText",
+            "label": "CTA Text",
+            "value": "",
+            "valueType": "string"
+          },
+          {
+            "component": "text",
+            "name": "ctaLink",
+            "label": "CTA Link",
+            "description": "Use a site-relative URL or absolute URL.",
+            "value": "",
+            "valueType": "string"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "highlighted-cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Columns",
+        "description": "Choose how many cards are displayed per row on desktop.",
+        "value": "columns-3",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "2 Columns",
+            "value": "columns-2"
+          },
+          {
+            "name": "3 Columns",
+            "value": "columns-3"
+          }
+        ]
       }
     ]
   }
