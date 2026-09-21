@@ -197,20 +197,7 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Highlighted Card",
-                  "model": "highlighted-card",
-                  "imageSettings": {
-                    "image": "",
-                    "alt": "",
-                    "useAsBackground": false
-                  },
-                  "contentSettings": {
-                    "category": "",
-                    "content": "<p>Add card content.</p>"
-                  },
-                  "ctaSettings": {
-                    "ctaText": "",
-                    "ctaLink": ""
-                  }
+                  "model": "highlighted-card"
                 }
               }
             }
@@ -226,7 +213,7 @@
                 "template": {
                   "name": "Highlighted Cards",
                   "model": "highlighted-cards",
-                  "classes": "columns-3"
+                  "filter": "highlighted-cards"
                 }
               }
             }
