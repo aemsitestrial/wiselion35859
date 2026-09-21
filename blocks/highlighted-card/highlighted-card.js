@@ -14,8 +14,7 @@ function findByProp(block, prop) {
 
 function findValue(block, prop) {
   const node = findByProp(block, prop);
-  if (!node) return '';
-  return text(node.getAttribute('data-aue-value') || node.textContent);
+  return node ? text(node.textContent) : '';
 }
 
 function findRichValue(block, prop) {
@@ -26,14 +25,11 @@ function findRichValue(block, prop) {
 function findReference(block, prop) {
   const node = findByProp(block, prop);
   if (!node) return '';
-
-  const image = node.querySelector('img[src]');
-  if (image?.src) return image.src;
-
   const link = node.querySelector('a[href]');
   if (link?.href) return link.href;
-
-  return text(node.getAttribute('data-aue-value') || node.textContent);
+  const image = node.querySelector('img[src]');
+  if (image?.src) return image.src;
+  return text(node.textContent);
 }
 
 function getValues(block) {
@@ -45,9 +41,9 @@ function getValues(block) {
     content: findRichValue(block, 'content'),
   };
 
-  // Fallback for preview markup where fields are rendered as rows/cells.
-  const cells = [...block.children];
-  if (!props.image && cells.length >= 5) {
+  // Fallback for preview markup without Universal Editor data attributes.
+  if (!props.image && !props.category && !props.content) {
+    const cells = [...block.children];
     props.image = cells[0]?.querySelector('a[href]')?.href
       || cells[0]?.querySelector('img[src]')?.src
       || text(cells[0]?.textContent);
@@ -66,7 +62,6 @@ function isTrue(value) {
 
 function buildImage(src, alt, background) {
   if (!src) return null;
-
   const image = document.createElement('img');
   image.src = src;
   image.alt = background ? '' : alt;
@@ -85,32 +80,29 @@ export default function decorate(block) {
   } = getValues(block);
 
   const background = isTrue(useAsBackground);
-
   block.classList.add('highlighted-card');
-  block.classList.toggle('highlighted-card-background', background);
+  block.classList.toggle('highlighted-card--background', background);
 
-  // Remove all authoring cells, including the boolean value. The boolean is
-  // used only as a rendering switch and is never written into page markup.
   block.replaceChildren();
 
   const media = document.createElement('div');
-  media.className = 'highlighted-card-media';
+  media.className = 'highlighted-card__media';
   const imageElement = buildImage(image, alt, background);
   if (imageElement) media.append(imageElement);
 
   const body = document.createElement('div');
-  body.className = 'highlighted-card-body';
+  body.className = 'highlighted-card__body';
 
   if (category) {
     const categoryElement = document.createElement('div');
-    categoryElement.className = 'highlighted-card-category';
+    categoryElement.className = 'highlighted-card__category';
     categoryElement.textContent = category;
     body.append(categoryElement);
   }
 
   if (content) {
     const contentElement = document.createElement('div');
-    contentElement.className = 'highlighted-card-content';
+    contentElement.className = 'highlighted-card__content';
     contentElement.innerHTML = content;
     body.append(contentElement);
   }

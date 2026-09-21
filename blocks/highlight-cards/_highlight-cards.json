@@ -78,7 +78,7 @@
           "valueType": "boolean",
           "name": "overlay",
           "label": "Use Image as Background",
-          "description": "When enabled, text overlays the image",
+          "description": "When enabled, text overlays the image"
         },
 
         {
