@@ -79,7 +79,6 @@
           "name": "overlay",
           "label": "Use Image as Background",
           "description": "When enabled, text overlays the image",
-          "value": false
         },
 
         {
