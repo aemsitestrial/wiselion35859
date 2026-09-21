@@ -43,10 +43,7 @@
   {
     "id": "highlight-cards",
     "components": [
-      "highlight-card",
-      "image",
-      "text",
-      "title"
+      "highlight-card"
     ]
   }
 ]
