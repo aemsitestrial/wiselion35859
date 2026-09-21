@@ -9,7 +9,20 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Highlighted Card",
-              "model": "highlighted-card"
+              "model": "highlighted-card",
+              "imageSettings": {
+                "image": "",
+                "alt": "",
+                "useAsBackground": false
+              },
+              "contentSettings": {
+                "category": "",
+                "content": "<p>Add card content.</p>"
+              },
+              "ctaSettings": {
+                "ctaText": "",
+                "ctaLink": ""
+              }
             }
           }
         }
@@ -21,45 +34,60 @@
       "id": "highlighted-card",
       "fields": [
         {
-          "component": "reference",
-          "name": "image",
+          "component": "container",
+          "name": "imageSettings",
           "label": "Image",
-          "description": "Select the card image.",
-          "value": "",
           "valueType": "string",
-          "required": true,
-          "multi": false
+          "fields": [
+            {
+              "component": "reference",
+              "name": "image",
+              "label": "Image Asset",
+              "description": "Select the card image.",
+              "value": "",
+              "valueType": "string",
+              "required": true,
+              "multi": false
+            },
+            {
+              "component": "text",
+              "name": "alt",
+              "label": "Alt Text",
+              "description": "Alternative text for the image. Leave empty only when the image is decorative.",
+              "value": "",
+              "valueType": "string"
+            },
+            {
+              "component": "boolean",
+              "name": "useAsBackground",
+              "label": "Use image as background",
+              "description": "When enabled, category, rich text, and CTA are rendered over the image.",
+              "valueType": "boolean"
+            }
+          ]
         },
         {
-          "component": "text",
-          "name": "alt",
-          "label": "Alt Text",
-          "description": "Alternative text for the image. Leave empty when the image is decorative.",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "boolean",
-          "name": "useAsBackground",
-          "label": "Use image as background",
-          "description": "When enabled, the category and rich text are rendered over the image.",
-          "value": false,
-          "valueType": "boolean"
-        },
-        {
-          "component": "text",
-          "name": "category",
-          "label": "Category",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "name": "content",
-          "label": "Rich Text",
-          "value": "<p></p>",
+          "component": "container",
+          "name": "contentSettings",
+          "label": "Content",
           "valueType": "string",
-          "required": true
+          "fields": [
+            {
+              "component": "text",
+              "name": "category",
+              "label": "Category",
+              "value": "",
+              "valueType": "string"
+            },
+            {
+              "component": "richtext",
+              "name": "content",
+              "label": "Rich Text",
+              "value": "<p>Add card content.</p>",
+              "valueType": "string",
+              "required": true
+            }
+          ]
         }
       ]
     }
