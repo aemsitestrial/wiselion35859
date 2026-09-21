@@ -257,8 +257,7 @@
         "valueType": "boolean",
         "name": "overlay",
         "label": "Use Image as Background",
-        "description": "When enabled, text overlays the image",
-        "value": false
+        "description": "When enabled, text overlays the image"
       },
       {
         "component": "text",
@@ -276,6 +275,75 @@
         "component": "aem-content",
         "name": "cta",
         "label": "CTA Link"
+      }
+    ]
+  },
+  {
+    "id": "highlighted-card",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "description": "Select the card image.",
+        "value": "",
+        "valueType": "string",
+        "required": true,
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "alt",
+        "label": "Alt Text",
+        "description": "Alternative text for the image. Leave empty when the image is decorative.",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "name": "useAsBackground",
+        "label": "Use image as background",
+        "description": "When enabled, the category and rich text are rendered over the image.",
+        "value": false,
+        "valueType": "boolean"
+      },
+      {
+        "component": "text",
+        "name": "category",
+        "label": "Category",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "content",
+        "label": "Rich Text",
+        "value": "<p></p>",
+        "valueType": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "highlighted-cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Columns",
+        "description": "Choose how many cards are displayed per row on desktop.",
+        "value": "columns-3",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "2 Columns",
+            "value": "columns-2"
+          },
+          {
+            "name": "3 Columns",
+            "value": "columns-3"
+          }
+        ]
       }
     ]
   }

@@ -187,6 +187,37 @@
               }
             }
           }
+        },
+        {
+          "title": "Highlighted Card",
+          "id": "highlighted-card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Highlighted Card",
+                  "model": "highlighted-card"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Highlighted Cards",
+          "id": "highlighted-cards",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Highlighted Cards",
+                  "model": "highlighted-cards",
+                  "filter": "highlighted-cards"
+                }
+              }
+            }
+          }
         }
       ]
     }
