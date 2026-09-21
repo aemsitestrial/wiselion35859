@@ -246,11 +246,38 @@
     "id": "highlight-card",
     "fields": [
       {
+        "component": "select",
+        "name": "classes",
+        "label": "Columns",
+        "description": "Choose how many cards are displayed per row on desktop.",
+        "value": "columns-3",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "2 Columns",
+            "value": "columns-2"
+          },
+          {
+            "name": "3 Columns",
+            "value": "columns-3"
+          }
+        ]
+      },
+      {
         "component": "reference",
         "valueType": "string",
         "name": "image",
+        "description": "Select the card image.",
         "label": "Image",
         "multi": false
+      },
+      {
+        "component": "boolean",
+        "name": "useAsBackground",
+        "label": "Use image as background",
+        "description": "When enabled, the category and rich text are rendered over the image.",
+        "value": false,
+        "valueType": "boolean"
       },
       {
         "component": "text",
@@ -263,11 +290,6 @@
         "valueType": "string",
         "name": "text",
         "label": "Rich Text"
-      },
-      {
-        "component": "aem-content",
-        "name": "cta",
-        "label": "CTA Link"
       }
     ]
   },
