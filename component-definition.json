@@ -197,7 +197,20 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Highlighted Card",
-                  "model": "highlighted-card"
+                  "model": "highlighted-card",
+                  "imageSettings": {
+                    "image": "",
+                    "alt": "",
+                    "useAsBackground": false
+                  },
+                  "contentSettings": {
+                    "category": "",
+                    "content": "<p>Add card content.</p>"
+                  },
+                  "ctaSettings": {
+                    "ctaText": "",
+                    "ctaLink": ""
+                  }
                 }
               }
             }
