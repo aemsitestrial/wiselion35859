@@ -19,6 +19,6 @@ module.exports = {
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     // the highlight card renders one cell per field plus one per overlay toggle
-    'xwalk/max-cells': ['error', { 'highlight-card': 9, '*': 4 }],
+    'xwalk/max-cells': ['error', { 'highlight-card': 9,'highlighted-card': 9, '*': 4 }],
   },
 };
