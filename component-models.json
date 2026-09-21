@@ -216,33 +216,6 @@
     ]
   },
   {
-    "id": "highlight-cards",
-    "fields": [
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Columns",
-        "description": "Number of cards shown per row",
-        "value": "cols-3",
-        "options": [
-          {
-            "name": "2 Columns",
-            "value": "cols-2"
-          },
-          {
-            "name": "3 Columns",
-            "value": "cols-3"
-          },
-          {
-            "name": "4 Columns",
-            "value": "cols-4"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "highlight-card",
     "fields": [
       {
