@@ -50,6 +50,7 @@
         "hero",
         "cards",
         "highlight-cards",
+        "highlighted-cards",
         "columns",
         "fragment"
       ]
