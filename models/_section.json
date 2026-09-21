@@ -51,6 +51,7 @@
         "cards",
         "highlight-cards",
         "highlighted-cards",
+        "highlighted-card",
         "columns",
         "fragment"
       ]
