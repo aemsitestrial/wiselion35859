@@ -1,0 +1,42 @@
+/* Highlighted Cards parent */
+.highlighted-cards {
+  --highlighted-cards-gap: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--highlighted-cards-gap);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.highlighted-cards.columns-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.highlighted-cards.columns-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* The child blocks are direct grid items. */
+.highlighted-cards > .highlighted-cards-item {
+  min-width: 0;
+}
+
+/* XWalk may expose a child block inside a wrapper row. */
+.highlighted-cards > .highlighted-cards-item > .highlighted-card {
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .highlighted-cards,
+  .highlighted-cards.columns-2,
+  .highlighted-cards.columns-3 {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .highlighted-cards.columns-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
