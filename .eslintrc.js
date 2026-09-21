@@ -20,6 +20,7 @@ module.exports = {
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'xwalk/max-cells': ['error', {
       'highlight-card': 9,
+      'highlighted-card': 9,
       '*': 4,
     }],
 
