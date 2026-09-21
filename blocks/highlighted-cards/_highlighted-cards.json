@@ -10,7 +10,7 @@
             "template": {
               "name": "Highlighted Cards",
               "model": "highlighted-cards",
-              "classes": "columns-3"
+              "filter": "highlighted-cards"
             }
           }
         }

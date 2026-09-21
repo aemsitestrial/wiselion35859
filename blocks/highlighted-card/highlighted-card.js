@@ -1,10 +1,7 @@
 /**
  * Highlighted Card block.
  *
- * The Universal Editor model groups the card fields into three containers:
- * imageSettings, contentSettings and ctaSettings. The decorator is deliberately
- * tolerant of the serialized DOM shape so the component works in preview and
- * with Universal Editor instrumentation.
+ * Fields: image, alt, useAsBackground, category, content.
  */
 
 function text(value) {
@@ -15,16 +12,14 @@ function findByProp(block, prop) {
   return block.querySelector(`[data-aue-prop="${prop}"]`);
 }
 
-function findValue(block, prop, fallback = '') {
+function findValue(block, prop) {
   const node = findByProp(block, prop);
-  if (node) return text(node.textContent);
-  return fallback;
+  return node ? text(node.textContent) : '';
 }
 
 function findRichValue(block, prop) {
   const node = findByProp(block, prop);
-  if (node) return node.innerHTML.trim();
-  return '';
+  return node ? node.innerHTML.trim() : '';
 }
 
 function findReference(block, prop) {
@@ -37,38 +32,25 @@ function findReference(block, prop) {
   return text(node.textContent);
 }
 
-function getGroupedValues(block) {
+function getValues(block) {
   const props = {
     image: findReference(block, 'image'),
     alt: findValue(block, 'alt'),
     useAsBackground: findValue(block, 'useAsBackground'),
     category: findValue(block, 'category'),
     content: findRichValue(block, 'content'),
-    ctaText: findValue(block, 'ctaText'),
-    ctaLink: findValue(block, 'ctaLink'),
   };
 
-  // Fallback for preview markup where data-aue-prop is not present.
-  if (!props.image && !props.category && !props.content && !props.ctaText && !props.ctaLink) {
-    const groups = [...block.children];
-    const imageGroup = groups[0];
-    const contentGroup = groups[1];
-    const ctaGroup = groups[2];
-    const cells = (group) => (group ? [...group.querySelectorAll(':scope > div, :scope > p, :scope > a, :scope > img')] : []);
-    const imageCells = cells(imageGroup);
-    const contentCells = cells(contentGroup);
-    const ctaCells = cells(ctaGroup);
-
-    const imageCell = imageCells[0];
-    const altCell = imageCells[1];
-    const bgCell = imageCells[2];
-    props.image = imageCell?.querySelector('a[href]')?.href || imageCell?.querySelector('img[src]')?.src || text(imageCell?.textContent);
-    props.alt = text(altCell?.textContent);
-    props.useAsBackground = text(bgCell?.textContent);
-    props.category = text(contentCells[0]?.textContent);
-    props.content = contentCells[1]?.innerHTML?.trim() || '';
-    props.ctaText = text(ctaCells[0]?.textContent);
-    props.ctaLink = text(ctaCells[1]?.textContent);
+  // Fallback for preview markup without Universal Editor data attributes.
+  if (!props.image && !props.category && !props.content) {
+    const cells = [...block.children];
+    props.image = cells[0]?.querySelector('a[href]')?.href
+      || cells[0]?.querySelector('img[src]')?.src
+      || text(cells[0]?.textContent);
+    props.alt = text(cells[1]?.textContent);
+    props.useAsBackground = text(cells[2]?.textContent);
+    props.category = text(cells[3]?.textContent);
+    props.content = cells[4]?.innerHTML?.trim() || '';
   }
 
   return props;
@@ -95,9 +77,7 @@ export default function decorate(block) {
     useAsBackground,
     category,
     content,
-    ctaText,
-    ctaLink,
-  } = getGroupedValues(block);
+  } = getValues(block);
 
   const background = isTrue(useAsBackground);
   block.classList.add('highlighted-card');
@@ -125,14 +105,6 @@ export default function decorate(block) {
     contentElement.className = 'highlighted-card__content';
     contentElement.innerHTML = content;
     body.append(contentElement);
-  }
-
-  if (ctaText && ctaLink) {
-    const cta = document.createElement('a');
-    cta.className = 'highlighted-card__cta';
-    cta.href = ctaLink;
-    cta.textContent = ctaText;
-    body.append(cta);
   }
 
   block.append(media, body);

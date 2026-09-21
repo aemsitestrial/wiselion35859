@@ -11,10 +11,13 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-/* Replace these aspect ratios with your exact design dimensions if needed. */
-.highlighted-cards.columns-2 .highlighted-card__media,
-.highlighted-cards.columns-3 .highlighted-card__media {
-  aspect-ratio: 16 / 9;
+/* Replace with exact design dimensions if your 2- and 3-column cards differ. */
+.highlighted-cards.columns-2 .highlighted-card-media {
+  aspect-ratio: 4 / 3;
+}
+
+.highlighted-cards.columns-3 .highlighted-card-media {
+  aspect-ratio: 16 / 10;
 }
 
 @media (width <= 767px) {

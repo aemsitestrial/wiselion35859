@@ -9,20 +9,7 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Highlighted Card",
-              "model": "highlighted-card",
-              "imageSettings": {
-                "image": "",
-                "alt": "",
-                "useAsBackground": false
-              },
-              "contentSettings": {
-                "category": "",
-                "content": "<p>Add card content.</p>"
-              },
-              "ctaSettings": {
-                "ctaText": "",
-                "ctaLink": ""
-              }
+              "model": "highlighted-card"
             }
           }
         }
@@ -34,84 +21,45 @@
       "id": "highlighted-card",
       "fields": [
         {
-          "component": "container",
-          "name": "imageSettings",
+          "component": "reference",
+          "name": "image",
           "label": "Image",
+          "description": "Select the card image.",
+          "value": "",
           "valueType": "string",
-          "fields": [
-            {
-              "component": "reference",
-              "name": "image",
-              "label": "Image Asset",
-              "description": "Select the card image.",
-              "value": "",
-              "valueType": "string",
-              "required": true,
-              "multi": false
-            },
-            {
-              "component": "text",
-              "name": "alt",
-              "label": "Alt Text",
-              "description": "Alternative text for the image. Leave empty only when the image is decorative.",
-              "value": "",
-              "valueType": "string"
-            },
-            {
-              "component": "boolean",
-              "name": "useAsBackground",
-              "label": "Use image as background",
-              "description": "When enabled, category, rich text, and CTA are rendered over the image.",
-              "value": false,
-              "valueType": "boolean"
-            }
-          ]
+          "required": true,
+          "multi": false
         },
         {
-          "component": "container",
-          "name": "contentSettings",
-          "label": "Content",
-          "valueType": "string",
-          "fields": [
-            {
-              "component": "text",
-              "name": "category",
-              "label": "Category",
-              "value": "",
-              "valueType": "string"
-            },
-            {
-              "component": "richtext",
-              "name": "content",
-              "label": "Rich Text",
-              "value": "<p>Add card content.</p>",
-              "valueType": "string",
-              "required": true
-            }
-          ]
+          "component": "text",
+          "name": "alt",
+          "label": "Alt Text",
+          "description": "Alternative text for the image. Leave empty when the image is decorative.",
+          "value": "",
+          "valueType": "string"
         },
         {
-          "component": "container",
-          "name": "cta-Settings",
-          "label": "CTA",
+          "component": "boolean",
+          "name": "useAsBackground",
+          "label": "Use image as background",
+          "description": "When enabled, the category and rich text are rendered over the image.",
+          "value": false,
+          "valueType": "boolean"
+        },
+        {
+          "component": "text",
+          "name": "category",
+          "label": "Category",
+          "value": "",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "content",
+          "label": "Rich Text",
+          "value": "<p></p>",
           "valueType": "string",
-          "fields": [
-            {
-              "component": "text",
-              "name": "cta-Text",
-              "label": "CTA Text",
-              "value": "",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "name": "cta-Link",
-              "label": "CTA Link",
-              "description": "Use a site-relative URL or absolute URL.",
-              "value": "",
-              "valueType": "string"
-            }
-          ]
+          "required": true
         }
       ]
     }

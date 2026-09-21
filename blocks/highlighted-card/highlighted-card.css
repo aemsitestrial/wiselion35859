@@ -5,24 +5,24 @@
   background: #fff;
 }
 
-.highlighted-card__media {
+.highlighted-card-media {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
-.highlighted-card__media img {
+.highlighted-card-media img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.highlighted-card__body {
+.highlighted-card-body {
   padding: 24px;
 }
 
-.highlighted-card__category {
+.highlighted-card-category {
   margin-bottom: 12px;
   font-size: 14px;
   font-weight: 700;
@@ -30,25 +30,19 @@
   text-transform: uppercase;
 }
 
-.highlighted-card__content > :first-child {
+.highlighted-card-content > :first-child {
   margin-top: 0;
 }
 
-.highlighted-card__content > :last-child {
+.highlighted-card-content > :last-child {
   margin-bottom: 0;
 }
 
-.highlighted-card__cta {
-  display: inline-block;
-  margin-top: 20px;
-  text-decoration: none;
-}
-
-.highlighted-card--background {
+.highlighted-card-background {
   min-height: 400px;
 }
 
-.highlighted-card--background .highlighted-card__media {
+.highlighted-card-background .highlighted-card-media {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -56,7 +50,7 @@
   aspect-ratio: auto;
 }
 
-.highlighted-card--background::after {
+.highlighted-card-background::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -65,7 +59,7 @@
   pointer-events: none;
 }
 
-.highlighted-card--background .highlighted-card__body {
+.highlighted-card-background .highlighted-card-body {
   position: relative;
   z-index: 2;
   display: flex;
@@ -75,8 +69,4 @@
   box-sizing: border-box;
   padding: 32px;
   color: #fff;
-}
-
-.highlighted-card--background .highlighted-card__cta {
-  color: inherit;
 }
