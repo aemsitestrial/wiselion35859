@@ -6,17 +6,23 @@
       "plugins": {
         "xwalk": {
           "page": {
-            "resourceType": "core/franklin/components/block/v1/block",
+            "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Highlighted Card",
               "model": "highlighted-card",
-              "image": "",
-              "alt": "",
-              "useAsBackground": false,
-              "category": "Category",
-              "content": "<p>Add card content.</p>",
-              "ctaText": "Learn More",
-              "ctaLink": "/"
+              "imageSettings": {
+                "image": "",
+                "alt": "",
+                "useAsBackground": false
+              },
+              "contentSettings": {
+                "category": "",
+                "content": "<p>Add card content.</p>"
+              },
+              "ctaSettings": {
+                "ctaText": "",
+                "ctaLink": ""
+              }
             }
           }
         }
@@ -28,59 +34,84 @@
       "id": "highlighted-card",
       "fields": [
         {
-          "component": "reference",
-          "name": "image",
+          "component": "container",
+          "name": "imageSettings",
           "label": "Image",
-          "description": "Select the card image. Use the dimensions/aspect ratio specified by the design.",
-          "value": "",
           "valueType": "string",
-          "required": true
+          "fields": [
+            {
+              "component": "reference",
+              "name": "image",
+              "label": "Image Asset",
+              "description": "Select the card image.",
+              "value": "",
+              "valueType": "string",
+              "required": true,
+              "multi": false
+            },
+            {
+              "component": "text",
+              "name": "alt",
+              "label": "Alt Text",
+              "description": "Alternative text for the image. Leave empty only when the image is decorative.",
+              "value": "",
+              "valueType": "string"
+            },
+            {
+              "component": "boolean",
+              "name": "useAsBackground",
+              "label": "Use image as background",
+              "description": "When enabled, category, rich text, and CTA are rendered over the image.",
+              "value": false,
+              "valueType": "boolean"
+            }
+          ]
         },
         {
-          "component": "text",
-          "name": "alt",
-          "label": "Alt Text",
-          "description": "Alternative text for the image. Leave empty only when the image is purely decorative.",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "boolean",
-          "name": "useAsBackground",
-          "label": "Use image as background",
-          "description": "When enabled, category, content, and CTA are rendered over the image.",
-          "value": false,
-          "valueType": "boolean"
-        },
-        {
-          "component": "text",
-          "name": "category",
-          "label": "Category",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "name": "content",
-          "label": "Rich Text",
-          "value": "<p>Add card content.</p>",
+          "component": "container",
+          "name": "contentSettings",
+          "label": "Content",
           "valueType": "string",
-          "required": true
+          "fields": [
+            {
+              "component": "text",
+              "name": "category",
+              "label": "Category",
+              "value": "",
+              "valueType": "string"
+            },
+            {
+              "component": "richtext",
+              "name": "content",
+              "label": "Rich Text",
+              "value": "<p>Add card content.</p>",
+              "valueType": "string",
+              "required": true
+            }
+          ]
         },
         {
-          "component": "text",
-          "name": "ctaText",
-          "label": "CTA Text",
-          "value": "",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "ctaLink",
-          "label": "CTA Link",
-          "description": "Use a site-relative URL such as /content/site/page.html or an absolute URL.",
-          "value": "",
-          "valueType": "string"
+          "component": "container",
+          "name": "cta-Settings",
+          "label": "CTA",
+          "valueType": "string",
+          "fields": [
+            {
+              "component": "text",
+              "name": "cta-Text",
+              "label": "CTA Text",
+              "value": "",
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "name": "cta-Link",
+              "label": "CTA Link",
+              "description": "Use a site-relative URL or absolute URL.",
+              "value": "",
+              "valueType": "string"
+            }
+          ]
         }
       ]
     }
