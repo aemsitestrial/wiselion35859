@@ -10,9 +10,6 @@ const FIELD_CLASSES = [
 ];
 
 export default function decorate(block) {
-  block.classList.add('highlight-cards');
-  [...block.children].forEach((row) => row.classList.add('highlight-cards-item'));
-
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
