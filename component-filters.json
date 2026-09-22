@@ -16,8 +16,7 @@
       "cards",
       "highlight-cards",
       "columns",
-      "fragment",
-      "highlighted-cards"
+      "fragment"
     ]
   },
   {
@@ -29,28 +28,14 @@
   {
     "id": "columns",
     "components": [
-      "column"
-    ]
-  },
-  {
-    "id": "column",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title"
+      "highlight-card",
+      "highlight-cards"
     ]
   },
   {
     "id": "highlight-cards",
     "components": [
       "highlight-card"
-    ]
-  },
-  {
-    "id": "highlighted-cards",
-    "components": [
-      "highlighted-card"
     ]
   }
 ]

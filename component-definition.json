@@ -166,7 +166,9 @@
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "name": "Highlight Cards",
-                  "filter": "highlight-cards"
+                  "filter": "highlight-cards",
+                  "columns": "2",
+                  "rows": "1"
                 }
               }
             }
@@ -182,50 +184,6 @@
                 "template": {
                   "name": "Highlight Card",
                   "model": "highlight-card"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Highlighted Card",
-          "id": "highlighted-card",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "Highlighted Card",
-                  "model": "highlighted-card",
-                  "imageSettings": {
-                    "image": "",
-                    "alt": "",
-                    "useAsBackground": false
-                  },
-                  "contentSettings": {
-                    "category": "",
-                    "content": "<p>Add card content.</p>"
-                  },
-                  "ctaSettings": {
-                    "ctaText": "",
-                    "ctaLink": ""
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Highlighted Cards",
-          "id": "highlighted-cards",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "Highlighted Cards",
-                  "model": "highlighted-cards",
-                  "filter": "highlighted-cards"
                 }
               }
             }
