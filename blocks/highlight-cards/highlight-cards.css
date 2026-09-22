@@ -3,8 +3,8 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  grid-gap: 25px;
+  gap: 25px;
+  grid-template-columns: 1fr;
 }
 
 .highlight-cards > ul > li {
@@ -49,7 +49,7 @@
   font-family: Inter, sans-serif;
   font-weight: 500;
   font-size: 12px;
-  line-height: 140%; /* ~16.8px */
+  line-height: 140%;
   letter-spacing: 0;
   text-transform: uppercase;
   text-align: left;
@@ -60,7 +60,6 @@
   min-height: 1.2em;
   opacity: 0.85;
 }
-
 
 .highlight-cards .highlight-cards-card-heading {
   flex: 0 0 auto;
@@ -78,7 +77,6 @@
   margin: 12px 20px 24px;
   color: var(--background-color);
 }
-
 
 .highlight-cards .highlight-cards-card-body p {
   margin: 0 0 14px;
@@ -117,7 +115,7 @@
 
 .highlight-cards .highlight-cards-card-body a.button::after,
 .highlight-cards .highlight-cards-card-cta a.button::after {
-  content: '\2192';
+  content: '→';
 }
 
 .highlight-cards .highlight-cards-card-body a.button:hover,
@@ -129,38 +127,16 @@
   color: var(--text-color);
 }
 
-.highlight-cards {
-  display: grid;
-  gap: 50px;
-}
-
-.highlight-cards.columns-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.highlight-cards.columns-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-/* Replace with exact design dimensions if your 2- and 3-column cards differ. */
-.highlight-cards.columns-2 .highlight-card-media {
-  aspect-ratio: 4 / 3;
-}
-
-.highlight-cards.columns-3 .highlight-card-media {
-  aspect-ratio: 16 / 10;
-}
-
 @media (width >= 900px) {
-  .highlight-cards > ul {
+  .highlight-cards.columns-2 > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .highlight-cards.columns-3 > ul {
     grid-template-columns: repeat(3, 1fr);
   }
-}
 
-@media (width <= 767px) {
-  .highlight-cards.columns-2,
-  .highlight-cards.columns-3 {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .highlight-cards.columns-4 > ul {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
