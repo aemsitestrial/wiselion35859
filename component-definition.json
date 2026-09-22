@@ -167,12 +167,25 @@
                 "template": {
                   "name": "Highlight Cards",
                   "filter": "highlight-cards",
-                  "columns": "2",
-                  "rows": "1"
+                  "columns": "2"
                 }
               }
             }
-          }
+          },
+          "variations": [
+            {
+              "title": "2 Columns",
+              "id": "columns-2"
+            },
+            {
+              "title": "3 Columns",
+              "id": "columns-3"
+            },
+            {
+              "title": "4 Columns",
+              "id": "columns-4"
+            }
+          ]
         },
         {
           "title": "Highlight Card",
