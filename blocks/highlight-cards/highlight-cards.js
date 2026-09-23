@@ -10,13 +10,14 @@ const FIELD_CLASSES = [
 ];
 
 export default function decorate(block) {
-  const columnVariation = [...block.classList]
-    .find((cls) => /^columns-[234]$/.test(cls));
+  const firstRow = block.firstElementChild;
+  const cols = firstRow ? [...firstRow.children] : [];
+  const columnCount = cols.length || 2;
 
-  if (!columnVariation) {
-    block.classList.add('columns-3');
-  }
+  block.classList.add(`columns-${columnCount}-cols`);
+  block.style.setProperty('--column-count', columnCount);
 
+  // mylogic
   const ul = document.createElement('ul');
 
   [...block.children].forEach((row) => {
