@@ -11,77 +11,67 @@ const FIELD_CLASSES = [
 
 export default function decorate(block) {
   let columnCount = 2;
-  const firstRow = block.firstElementChild;
-  if (firstRow) {
-    const firstCell = firstRow.firstElementChild;
-    if (firstCell) {
-      const value = Number(firstCell.textContent.trim());
-      if ([2, 3, 4].includes(value)) {
-        columnCount = value;
-      }
+
+  // Read configuration row and remove it from rendering
+  const configRow = block.firstElementChild;
+
+  if (configRow) {
+    const value = Number(configRow.textContent.trim());
+
+    if ([2, 3, 4].includes(value)) {
+      columnCount = value;
     }
 
-    block.classList.add(`col-${columnCount}`);
-    const ul = document.createElement('ul');
-    [...block.children].forEach((row) => {
-      const li = document.createElement('li');
-      moveInstrumentation(row, li);
-      while (row.firstElementChild) {
-        li.append(row.firstElementChild);
-      }
-      [...li.children].forEach((div, i) => {
-        div.className = FIELD_CLASSES[i] || 'highlight-cards-card-body';
-      });
-      ul.append(li);
+    configRow.remove();
+  }
+
+  block.classList.add(`col-${columnCount}`);
+
+  const ul = document.createElement('ul');
+
+  [...block.children].forEach((row) => {
+    const li = document.createElement('li');
+
+    moveInstrumentation(row, li);
+
+    while (row.firstElementChild) {
+      li.append(row.firstElementChild);
+    }
+
+    [...li.children].forEach((div, i) => {
+      div.className = FIELD_CLASSES[i] || 'highlight-cards-card-body';
     });
 
-    // eslint-disable-next-line indent
-    // mylogic
-    // const ul = document.createElement('ul');
+    ul.append(li);
+  });
 
-    [...block.children].forEach((row) => {
-      const li = document.createElement('li');
+  ul.querySelectorAll('.highlight-cards-card-image a[href]').forEach((link) => {
+    const img = document.createElement('img');
 
-      moveInstrumentation(row, li);
+    img.src = link.href;
+    img.alt = link.title || link.textContent.trim() || '';
 
-      while (row.firstElementChild) {
-        li.append(row.firstElementChild);
-      }
+    moveInstrumentation(link, img);
 
-      [...li.children].forEach((div, i) => {
-        div.className = FIELD_CLASSES[i] || 'highlight-cards-card-body';
-      });
+    const picture = document.createElement('picture');
+    picture.append(img);
 
-      ul.append(li);
-    });
+    (link.closest('.button-container') || link).replaceWith(picture);
+  });
 
-    ul.querySelectorAll('.highlight-cards-card-image a[href]').forEach(
-      (link) => {
-        const img = document.createElement('img');
-
-        img.src = link.href;
-        img.alt = link.title || link.textContent.trim() || '';
-
-        moveInstrumentation(link, img);
-
-        const picture = document.createElement('picture');
-        picture.append(img);
-
-        (link.closest('.button-container') || link).replaceWith(picture);
-      },
+  ul.querySelectorAll('picture > img').forEach((img) => {
+    const optimizedPic = createOptimizedPicture(
+      img.src,
+      img.alt,
+      false,
+      [{ width: '750' }],
     );
 
-    ul.querySelectorAll('picture > img').forEach((img) => {
-      const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [
-        { width: '750' },
-      ]);
+    moveInstrumentation(img, optimizedPic.querySelector('img'));
 
-      moveInstrumentation(img, optimizedPic.querySelector('img'));
+    img.closest('picture').replaceWith(optimizedPic);
+  });
 
-      img.closest('picture').replaceWith(optimizedPic);
-    });
-
-    block.textContent = '';
-    block.append(ul);
-  }
+  block.textContent = '';
+  block.append(ul);
 }
