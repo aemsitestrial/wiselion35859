@@ -167,8 +167,7 @@
                 "template": {
                   "name": "Highlight Cards",
                   "model": "highlight-cards",
-                  "filter": "highlight-cards",
-                  "columns": "2"
+                  "filter": "highlight-cards"
                 }
               }
             }
