@@ -10,59 +10,78 @@ const FIELD_CLASSES = [
 ];
 
 export default function decorate(block) {
+  let columnCount = 2;
   const firstRow = block.firstElementChild;
-  const cols = firstRow ? [...firstRow.children] : [];
-  const columnCount = cols.length || 2;
-
-  block.classList.add(`columns-${columnCount}-cols`);
-  block.style.setProperty('--column-count', columnCount);
-
-  // mylogic
-  const ul = document.createElement('ul');
-
-  [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-
-    moveInstrumentation(row, li);
-
-    while (row.firstElementChild) {
-      li.append(row.firstElementChild);
+  if (firstRow) {
+    const firstCell = firstRow.firstElementChild;
+    if (firstCell) {
+      const value = Number(firstCell.textContent.trim());
+      if ([2, 3, 4].includes(value)) {
+        columnCount = value;
+      }
     }
 
-    [...li.children].forEach((div, i) => {
-      div.className = FIELD_CLASSES[i] || 'highlight-cards-card-body';
+    block.classList.add(`col-${columnCount}`);
+    const ul = document.createElement('ul');
+    [...block.children].forEach((row) => {
+      const li = document.createElement('li');
+      moveInstrumentation(row, li);
+      while (row.firstElementChild) {
+        li.append(row.firstElementChild);
+      }
+      [...li.children].forEach((div, i) => {
+        div.className = FIELD_CLASSES[i] || 'highlight-cards-card-body';
+      });
+      ul.append(li);
     });
 
-    ul.append(li);
-  });
+    // eslint-disable-next-line indent
+    // mylogic
+    // const ul = document.createElement('ul');
 
-  ul.querySelectorAll('.highlight-cards-card-image a[href]').forEach((link) => {
-    const img = document.createElement('img');
+    [...block.children].forEach((row) => {
+      const li = document.createElement('li');
 
-    img.src = link.href;
-    img.alt = link.title || link.textContent.trim() || '';
+      moveInstrumentation(row, li);
 
-    moveInstrumentation(link, img);
+      while (row.firstElementChild) {
+        li.append(row.firstElementChild);
+      }
 
-    const picture = document.createElement('picture');
-    picture.append(img);
+      [...li.children].forEach((div, i) => {
+        div.className = FIELD_CLASSES[i] || 'highlight-cards-card-body';
+      });
 
-    (link.closest('.button-container') || link).replaceWith(picture);
-  });
+      ul.append(li);
+    });
 
-  ul.querySelectorAll('picture > img').forEach((img) => {
-    const optimizedPic = createOptimizedPicture(
-      img.src,
-      img.alt,
-      false,
-      [{ width: '750' }],
+    ul.querySelectorAll('.highlight-cards-card-image a[href]').forEach(
+      (link) => {
+        const img = document.createElement('img');
+
+        img.src = link.href;
+        img.alt = link.title || link.textContent.trim() || '';
+
+        moveInstrumentation(link, img);
+
+        const picture = document.createElement('picture');
+        picture.append(img);
+
+        (link.closest('.button-container') || link).replaceWith(picture);
+      },
     );
 
-    moveInstrumentation(img, optimizedPic.querySelector('img'));
+    ul.querySelectorAll('picture > img').forEach((img) => {
+      const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [
+        { width: '750' },
+      ]);
 
-    img.closest('picture').replaceWith(optimizedPic);
-  });
+      moveInstrumentation(img, optimizedPic.querySelector('img'));
 
-  block.textContent = '';
-  block.append(ul);
+      img.closest('picture').replaceWith(optimizedPic);
+    });
+
+    block.textContent = '';
+    block.append(ul);
+  }
 }
