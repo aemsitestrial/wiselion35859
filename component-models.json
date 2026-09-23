@@ -219,11 +219,25 @@
     "id": "highlight-cards",
     "fields": [
       {
-        "component": "text",
-        "valueType": "number",
+        "component": "select",
         "name": "columns",
+        "label": "Cards Per Row",
+        "valueType": "string",
         "value": "2",
-        "label": "Cards Per Row"
+        "options": [
+          {
+            "name": "2 Columns",
+            "value": "2"
+          },
+          {
+            "name": "3 Columns",
+            "value": "3"
+          },
+          {
+            "name": "4 Columns",
+            "value": "4"
+          }
+        ]
       }
     ]
   },
