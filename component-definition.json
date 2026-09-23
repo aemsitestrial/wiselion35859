@@ -166,26 +166,13 @@
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "name": "Highlight Cards",
+                  "model": "highlight-cards",
                   "filter": "highlight-cards",
                   "columns": "2"
                 }
               }
             }
-          },
-          "variations": [
-            {
-              "title": "2 Columns",
-              "id": "columns-2"
-            },
-            {
-              "title": "3 Columns",
-              "id": "columns-3"
-            },
-            {
-              "title": "4 Columns",
-              "id": "columns-4"
-            }
-          ]
+          }
         },
         {
           "title": "Highlight Card",

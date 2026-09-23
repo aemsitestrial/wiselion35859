@@ -216,6 +216,32 @@
     ]
   },
   {
+    "id": "highlight-cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "columns",
+        "label": "Columns",
+        "valueType": "string",
+        "value": "2",
+        "options": [
+          {
+            "name": "2 Columns",
+            "value": "2"
+          },
+          {
+            "name": "3 Columns",
+            "value": "3"
+          },
+          {
+            "name": "4 Columns",
+            "value": "4"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "highlight-card",
     "fields": [
       {
@@ -224,13 +250,6 @@
         "name": "image",
         "label": "Image",
         "multi": false
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "overlay",
-        "label": "Use Image as Background",
-        "description": "When enabled, text overlays the image"
       },
       {
         "component": "text",
