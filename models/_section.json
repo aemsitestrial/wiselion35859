@@ -53,7 +53,8 @@
         "highlighted-cards",
         "highlighted-card",
         "columns",
-        "fragment"
+        "fragment",
+        "api-users"
       ]
     }
   ]
