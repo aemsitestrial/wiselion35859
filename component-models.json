@@ -271,7 +271,8 @@
           "unorderedList",
           "orderedList",
           "quote",
-          "strikethrough"
+          "strikethrough",
+          "table"
         ]
       },
       {
