@@ -1,31 +1,27 @@
-.users-wrapper {
+.api-users-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin: 24px 0;
 }
 
-.user-card {
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
+.api-user-card {
   padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   background: #fff;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
 }
 
-.user-card h3 {
-  margin: 0 0 10px;
-  color: #1a1a1a;
+.api-user-card h3 {
+  margin-bottom: 10px;
 }
 
-.user-card p {
-  margin: 6px 0;
-  font-size: 14px;
+.api-user-card p {
+  margin: 5px 0;
 }
 
-.loading,
-.error {
-  padding: 20px;
+.api-users-loading,
+.api-users-error {
   text-align: center;
-  font-size: 18px;
+  padding: 30px;
+  font-weight: bold;
 }
