@@ -261,7 +261,18 @@
         "component": "richtext",
         "valueType": "string",
         "name": "text",
-        "label": "Rich Text"
+        "label": "Rich Text",
+        "plugins": [
+          "bold",
+          "italic",
+          "underline",
+          "link",
+          "heading",
+          "unorderedList",
+          "orderedList",
+          "quote",
+          "strikethrough"
+        ]
       },
       {
         "component": "aem-content",
