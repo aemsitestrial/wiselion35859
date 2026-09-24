@@ -281,5 +281,16 @@
         "label": "CTA Link"
       }
     ]
-  }
+  },
+  {
+  "id": "api-users",
+  "fields": [
+    {
+      "component": "text",
+      "name": "heading",
+      "label": "Heading",
+      "value": "Users List"
+    }
+  ]
+}
 ]
