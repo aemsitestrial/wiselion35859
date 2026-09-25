@@ -41,7 +41,8 @@
     {
       "id": "columns",
       "components": [
-        "highlight-cards"     
+        "highlight-card",
+        "highlight-cards"
       ]
     }
   ]

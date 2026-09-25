@@ -1,0 +1,27 @@
+application:
+  actions: actions
+  web: web-src
+  runtimeManifest:
+    packages:
+      wiselion35859:
+        license: Apache-2.0
+        actions:
+          api-users:
+            function: actions/api-users/index.js
+            web: 'yes'
+            runtime: nodejs:20
+            inputs:
+              LOG_LEVEL: debug
+            annotations:
+              require-adobe-auth: false
+              final: true
+          users:
+            function: actions/users/index.js
+            web: 'yes'
+            runtime: nodejs:20
+            inputs:
+              LOG_LEVEL: debug
+              apiKey: $SERVICE_API_KEY
+            annotations:
+              require-adobe-auth: false
+              final: true
