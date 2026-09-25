@@ -1,149 +1,164 @@
-/* 
-* <license header>
-*/
+/* eslint-disable no-underscore-dangle */
+/*
+ * <license header>
+ */
 
 /* This file exposes some common utilities for your actions */
 
 /**
- *
  * Returns a log ready string of the action input parameters.
- * The `Authorization` header content will be replaced by '<hidden>'.
+ * The Authorization header content will be replaced by '<hidden>'.
  *
  * @param {object} params action input parameters.
- *
  * @returns {string}
- *
  */
-function stringParameters (params) {
+function stringParameters(params) {
   // shallow copy to not override first level references
-  const paramsShallowCopy = { ...params }
-  // hide credentials from the include-ims-credentials annotation without
-  // overriding fields in __ims_oauth_s2s
+  const paramsShallowCopy = { ...params };
+
+  // hide credentials from the include-ims-credentials annotation
   if (params.__ims_oauth_s2s?.client_secret) {
     paramsShallowCopy.__ims_oauth_s2s = {
       ...params.__ims_oauth_s2s,
-      client_secret: '<hidden>'
-    }
+      client_secret: '<hidden>',
+    };
   }
-  // hide authorization token without overriding fields in __ow_headers
+
+  // hide authorization token
   if (params.__ow_headers?.authorization) {
     paramsShallowCopy.__ow_headers = {
       ...params.__ow_headers,
-      authorization: '<hidden>'
-    }
+      authorization: '<hidden>',
+    };
   }
-  return JSON.stringify(paramsShallowCopy)
+
+  return JSON.stringify(paramsShallowCopy);
 }
 
 /**
- *
- * Returns the list of missing keys giving an object and its required keys.
- * A parameter is missing if its value is undefined or ''.
- * A value of 0 or null is not considered as missing.
+ * Returns missing keys from an object.
  *
  * @param {object} obj object to check.
  * @param {array} required list of required keys.
- *        Each element can be multi level deep using a '.' separator e.g. 'myRequiredObj.myRequiredKey'
- *
  * @returns {array}
- * @private
  */
-function getMissingKeys (obj, required) {
-  return required.filter(r => {
-    const splits = r.split('.')
-    const last = splits[splits.length - 1]
-    const traverse = splits.slice(0, -1).reduce((tObj, split) => { tObj = (tObj[split] || {}); return tObj }, obj)
-    return traverse[last] === undefined || traverse[last] === '' // missing default params are empty string
-  })
+function getMissingKeys(obj, required) {
+  return required.filter((r) => {
+    const splits = r.split('.');
+    const last = splits[splits.length - 1];
+
+    const traverse = splits.slice(0, -1).reduce((tObj, split) => {
+      const currentObj = tObj || {};
+      return currentObj[split] || {};
+    }, obj);
+
+    return (
+      traverse[last] === undefined
+      || traverse[last] === ''
+    );
+  });
 }
 
 /**
- *
- * Returns the list of missing keys giving an object and its required keys.
- * A parameter is missing if its value is undefined or ''.
- * A value of 0 or null is not considered as missing.
+ * Returns missing request inputs.
  *
  * @param {object} params action input parameters.
- * @param {array} requiredHeaders list of required input headers.
- * @param {array} requiredParams list of required input parameters.
- *        Each element can be multi level deep using a '.' separator e.g. 'myRequiredObj.myRequiredKey'.
- *
- * @returns {string} if the return value is not null, then it holds an error message describing the missing inputs.
- *
+ * @param {array} requiredParams required parameters.
+ * @param {array} requiredHeaders required headers.
+ * @returns {string|null}
  */
-function checkMissingRequestInputs (params, requiredParams = [], requiredHeaders = []) {
-  let errorMessage = null
+function checkMissingRequestInputs(
+  params,
+  requiredParams = [],
+  requiredHeaders = [],
+) {
+  let errorMessage = null;
 
   // input headers are always lowercase
-  requiredHeaders = requiredHeaders.map(h => h.toLowerCase())
-  // check for missing headers
-  const missingHeaders = getMissingKeys(params.__ow_headers || {}, requiredHeaders)
+  requiredHeaders = requiredHeaders.map(
+    (header) => header.toLowerCase(),
+  );
+
+  // check missing headers
+  const missingHeaders = getMissingKeys(
+    params.__ow_headers || {},
+    requiredHeaders,
+  );
+
   if (missingHeaders.length > 0) {
-    errorMessage = `missing header(s) '${missingHeaders}'`
+    errorMessage = `missing header(s) '${missingHeaders}'`;
   }
 
-  // check for missing parameters
-  const missingParams = getMissingKeys(params, requiredParams)
+  // check missing params
+  const missingParams = getMissingKeys(
+    params,
+    requiredParams,
+  );
+
   if (missingParams.length > 0) {
     if (errorMessage) {
-      errorMessage += ' and '
+      errorMessage += ' and ';
     } else {
-      errorMessage = ''
+      errorMessage = '';
     }
-    errorMessage += `missing parameter(s) '${missingParams}'`
+
+    errorMessage += `missing parameter(s) '${missingParams}'`;
   }
 
-  return errorMessage
+  return errorMessage;
 }
 
 /**
- *
- * Extracts the bearer token string from the Authorization header in the request parameters.
+ * Extract bearer token.
  *
  * @param {object} params action input parameters.
- *
- * @returns {string|undefined} the token string or undefined if not set in request headers.
- *
+ * @returns {string|undefined}
  */
-function getBearerToken (params) {
-  if (params.__ow_headers &&
-      params.__ow_headers.authorization &&
-      params.__ow_headers.authorization.startsWith('Bearer ')) {
-    return params.__ow_headers.authorization.substring('Bearer '.length)
+function getBearerToken(params) {
+  if (
+    params.__ow_headers
+    && params.__ow_headers.authorization
+    && params.__ow_headers.authorization.startsWith(
+      'Bearer ',
+    )
+  ) {
+    return params.__ow_headers.authorization.substring(
+      'Bearer '.length,
+    );
   }
-  return undefined
+
+  return undefined;
 }
+
 /**
+ * Build error response object.
  *
- * Returns an error response object and attempts to log.info the status code and error message
- *
- * @param {number} statusCode the error status code.
- *        e.g. 400
- * @param {string} message the error message.
- *        e.g. 'missing xyz parameter'
- * @param {*} [logger] an optional logger instance object with an `info` method
- *        e.g. `new require('@adobe/aio-sdk').Core.Logger('name')`
- *
- * @returns {object} the error object, ready to be returned from the action main's function.
- *
+ * @param {number} statusCode status code.
+ * @param {string} message error message.
+ * @param {*} logger optional logger.
+ * @returns {object}
  */
-function errorResponse (statusCode, message, logger) {
-  if (logger && typeof logger.info === 'function') {
-    logger.info(`${statusCode}: ${message}`)
+function errorResponse(statusCode, message, logger) {
+  if (
+    logger
+    && typeof logger.info === 'function'
+  ) {
+    logger.info(`${statusCode}: ${message}`);
   }
+
   return {
     error: {
       statusCode,
       body: {
-        error: message
-      }
-    }
-  }
+        error: message,
+      },
+    },
+  };
 }
 
 module.exports = {
   errorResponse,
   getBearerToken,
   stringParameters,
-  checkMissingRequestInputs
-}
+  checkMissingRequestInputs,
+};
