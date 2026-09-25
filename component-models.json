@@ -292,5 +292,15 @@
       "value": "Users List"
     }
   ]
+},{
+  "id": "article-cf",
+  "fields": [
+    {
+      "component": "aem-content",
+      "name": "cfPath",
+      "label": "Offer Content Fragment",
+      "valueType": "string"
+    }
+  ]
 }
 ]
