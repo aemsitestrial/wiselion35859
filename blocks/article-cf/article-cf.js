@@ -1,13 +1,6 @@
 export default async function decorate(block) {
   block.innerHTML = '<p>Loading offer...</p>';
 
-  const cfPath = block.textContent.trim();
-
-  if (!cfPath) {
-    block.innerHTML = '<p>No Content Fragment path configured.</p>';
-    return;
-  }
-
   const query = `
     query offerByPath(
       $path: String!,
@@ -19,11 +12,11 @@ export default async function decorate(block) {
       ) {
         item {
           headline
+          callToAction
+          ctaUrl
           detail {
             plaintext
           }
-          callToAction
-          ctaUrl
         }
       }
     }
@@ -40,7 +33,7 @@ export default async function decorate(block) {
         body: JSON.stringify({
           query,
           variables: {
-            path: cfPath,
+            path: '/content/dam/2026/37/cleverbadger84270/en/offers/fall-in-love-my-barista-subscription',
             variation: 'master',
           },
         }),
@@ -49,32 +42,12 @@ export default async function decorate(block) {
 
     const result = await response.json();
 
-    const offer = result?.data?.offerByPath?.item;
-
-    if (!offer) {
-      block.innerHTML = '<p>No offer found.</p>';
-      return;
-    }
-
-    const {
-      headline,
-      detail,
-      callToAction,
-      ctaUrl,
-    } = offer;
-
     block.innerHTML = `
-      <div class="article-cf-card">
-        <h2>${headline}</h2>
-
-        <p>${detail?.plaintext || ''}</p>
-
-        ${ctaUrl}
-          ${callToAction}
-        </a>
-      </div>
+      <pre>${JSON.stringify(result, null, 2)}</pre>
     `;
-  } catch (error) {
-    block.innerHTML = '<p>Failed to load offer.</p>';
+  } catch (e) {
+    block.innerHTML = `
+      <pre>${e.message}</pre>
+    `;
   }
 }
