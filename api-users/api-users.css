@@ -1,0 +1,27 @@
+.api-users-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.api-user-card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.api-user-card h3 {
+  margin-bottom: 10px;
+}
+
+.api-user-card p {
+  margin: 5px 0;
+}
+
+.api-users-loading,
+.api-users-error {
+  text-align: center;
+  padding: 30px;
+  font-weight: bold;
+}
