@@ -17,8 +17,7 @@
       "highlight-cards",
       "columns",
       "fragment",
-      "api-users",
-      "article-cf"
+      "api-users"
     ]
   },
   {
@@ -42,11 +41,5 @@
   },
   {
   "id": "api-users"
-  },
-  {
-  "id": "article-cf",
-  "components": [
-    "aem-content"
-    ]
-  } 
+  }
 ]

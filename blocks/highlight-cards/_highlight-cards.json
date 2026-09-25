@@ -79,19 +79,7 @@
           "component": "richtext",
           "valueType": "string",
           "name": "text",
-          "label": "Rich Text",
-          "plugins": [
-              "bold",
-              "italic",
-              "underline",
-              "link",
-              "heading",
-              "unorderedList",
-              "orderedList",
-              "quote",
-              "strikethrough",
-              "table"
-              ]
+          "label": "Rich Text"
         },
         {
           "component": "aem-content",

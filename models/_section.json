@@ -50,10 +50,11 @@
         "hero",
         "cards",
         "highlight-cards",
+        "highlighted-cards",
+        "highlighted-card",
         "columns",
         "fragment",
-        "api-users",
-        "article-cf"
+        "api-users"
       ]
     }
   ]

@@ -1,6 +1,5 @@
 export default async function decorate(block) {
-  const usersApi =
-    'https://38559-605crimsonvicuna-stage.adobeioruntime.net/api/v1/web/wiselion35859/api-users';
+  const usersApi = 'https://jsonplaceholder.typicode.com/users';
 
   block.innerHTML = `
     <div class="api-users-loading">
@@ -10,11 +9,6 @@ export default async function decorate(block) {
 
   try {
     const response = await fetch(usersApi);
-
-    if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status}`);
-    }
-
     const users = await response.json();
 
     block.innerHTML = '';
@@ -30,7 +24,7 @@ export default async function decorate(block) {
         <h3>${user.name}</h3>
         <p>${user.email}</p>
         <p>${user.phone}</p>
-        <p>${user.company?.name || user.company}</p>
+        <p>${user.company.name}</p>
       `;
 
       wrapper.appendChild(card);
@@ -38,8 +32,6 @@ export default async function decorate(block) {
 
     block.appendChild(wrapper);
   } catch (error) {
-    console.error('API Users Error:', error);
-
     block.innerHTML = `
       <div class="api-users-error">
         Failed to load users.
