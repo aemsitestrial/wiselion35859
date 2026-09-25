@@ -69,8 +69,8 @@ export default async function decorate(block) {
 
         <p>${detail.plaintext}</p>
 
-        <a
-          class="article-cf-ion}
+        ${ctaUrl}
+          ${callToAction}
         </a>
       </div>
     `;
