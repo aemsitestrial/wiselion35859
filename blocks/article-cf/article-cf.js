@@ -1,7 +1,7 @@
 export default async function decorate(block) {
   block.innerHTML = '<p>Loading offer...</p>';
 
-  const cfPath = block.dataset.cfPath;
+  const { cfPath } = block.dataset;
 
   if (!cfPath) {
     block.innerHTML = '<p>No Content Fragment selected.</p>';
@@ -35,44 +35,46 @@ export default async function decorate(block) {
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           query,
           variables: {
             path: cfPath,
-            variation: 'master'
-          }
-        })
-      }
+            variation: 'master',
+          },
+        }),
+      },
     );
 
     const result = await response.json();
 
-    const offer =
-      result?.data?.offerByPath?.item;
+    const offer = result?.data?.offerByPath?.item;
 
     if (!offer) {
-      block.innerHTML =
-        '<p>No offer content found.</p>';
+      block.innerHTML = '<p>No offer content found.</p>';
       return;
     }
 
+    const {
+      headline,
+      detail,
+      callToAction,
+      ctaUrl,
+    } = offer;
+
     block.innerHTML = `
       <div class="article-cf-card">
-        <h2>${offer.headline}</h2>
+        <h2>${headline}</h2>
 
-        <p>${offer.detail.plaintext}</p>
+        <p>${detail.plaintext}</p>
 
-        ${offer.ctaUrl}
-          ${offer.callToAction}
+        <a
+          class="article-cf-ion}
         </a>
       </div>
     `;
   } catch (error) {
-    console.error(error);
-
-    block.innerHTML =
-      '<p>Failed to load offer.</p>';
+    block.innerHTML = '<p>Failed to load offer.</p>';
   }
 }
