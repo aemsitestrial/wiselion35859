@@ -1,10 +1,10 @@
 export default async function decorate(block) {
   block.innerHTML = '<p>Loading offer...</p>';
 
-  const { cfPath } = block.dataset;
+  const cfPath = block.textContent.trim();
 
   if (!cfPath) {
-    block.innerHTML = '<p>No Content Fragment selected.</p>';
+    block.innerHTML = '<p>No Content Fragment path configured.</p>';
     return;
   }
 
@@ -52,7 +52,7 @@ export default async function decorate(block) {
     const offer = result?.data?.offerByPath?.item;
 
     if (!offer) {
-      block.innerHTML = '<p>No offer content found.</p>';
+      block.innerHTML = '<p>No offer found.</p>';
       return;
     }
 
@@ -67,7 +67,7 @@ export default async function decorate(block) {
       <div class="article-cf-card">
         <h2>${headline}</h2>
 
-        <p>${detail.plaintext}</p>
+        <p>${detail?.plaintext || ''}</p>
 
         ${ctaUrl}
           ${callToAction}
