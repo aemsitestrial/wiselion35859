@@ -40,7 +40,13 @@ export default async function decorate(block) {
       },
     );
 
-    const result = await response.json();
+    const text = await response.text();
+
+block.innerHTML = `
+  <pre>${text}</pre>
+`;
+
+return;
 
     block.innerHTML = `
       <pre>${JSON.stringify(result, null, 2)}</pre>
