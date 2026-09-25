@@ -296,10 +296,9 @@
   "id": "article-cf",
   "fields": [
     {
-      "component": "aem-content",
+      "component": "text",
       "name": "cfPath",
-      "label": "Content Fragment",
-      "valueType": "string"
+      "label": "Content Fragment"
     }
   ]
 }
