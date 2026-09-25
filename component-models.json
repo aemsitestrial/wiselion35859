@@ -298,7 +298,7 @@
     {
       "component": "aem-content",
       "name": "cfPath",
-      "label": "Offer Content Fragment",
+      "label": "Content Fragment",
       "valueType": "string"
     }
   ]
