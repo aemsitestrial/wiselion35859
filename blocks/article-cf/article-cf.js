@@ -1,5 +1,5 @@
 export default async function decorate(block) {
-  block.innerHTML = '<p>Loading offer...</p>';
+  block.innerHTML = "<p>Loading offer...</p>";
 
   const query = `
     query offerByPath(
@@ -24,17 +24,17 @@ export default async function decorate(block) {
 
   try {
     const response = await fetch(
-      'https://author-p153710-e1614654.adobeaemcloud.com/content/cq:graphql/aem-boilerplate-frescopa/endpoint.json',
+      "https://author-p153710-e1614654.adobeaemcloud.com/content/cq:graphql/aem-boilerplate-frescopa/endpoint.json",
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           query,
           variables: {
-            path: '/content/dam/2026/37/cleverbadger84270/en/offers/fall-in-love-my-barista-subscription',
-            variation: 'master',
+            path: "/content/dam/2026/37/cleverbadger84270/en/offers/fall-in-love-my-barista-subscription",
+            variation: "master",
           },
         }),
       },
@@ -42,11 +42,11 @@ export default async function decorate(block) {
 
     const text = await response.text();
 
-block.innerHTML = `
+    block.innerHTML = `
   <pre>${text}</pre>
 `;
 
-return;
+    return;
 
     block.innerHTML = `
       <pre>${JSON.stringify(result, null, 2)}</pre>
