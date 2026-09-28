@@ -292,14 +292,21 @@
       "value": "Users List"
     }
   ]
-},{
-  "id": "article-cf",
-  "fields": [
-    {
-      "component": "text",
-      "name": "cfPath",
-      "label": "Content Fragment"
-    }
-  ]
-}
+},
+{
+    "id": "mycf",
+    "fields": [
+      {
+        "component": "aem-content-fragment",
+        "name": "mycfpath",
+        "value": "",
+        "label": "Mycf Content Fragment path",
+        "valueType": "string",
+        "variationName": "contentFragmentVariation",
+        "validation": {
+          "rootPath": "/content/dam"
+        }
+      }
+    ]
+  }
 ]
