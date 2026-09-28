@@ -34,7 +34,7 @@ export default async function decorate(block) {
           query,
           variables: {
             path: '/content/dam/2026/37/cleverbadger84270/en/offers/fall-in-love-my-barista-subscription',
-            variation: 'master',
+            variation: 'main',
           },
         }),
       },
